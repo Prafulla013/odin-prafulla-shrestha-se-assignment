@@ -29,7 +29,7 @@ The output shows you, for each request, if it was **allowed** and the number of 
 ### Assumptions / Trade-offs
 
 - **Requests are given as timestamps in seconds** (floats or integers).
-- **Refill is linear over time**, not bursty.
+- **Refill is linear over time**.
 - **No concurrency**: requests are processed sequentially in the given order.
 - **Simulation only**: not integrated with a real API server.
 - **Tokens cannot exceed capacity**: extra refill tokens are discarded.
@@ -89,6 +89,47 @@ json
 ]
 
 # Frontend
+
+# Chat Grouper
+============
+
+A React component that renders a chat timeline with smart grouping and dividers. It handles sorted or unsorted input, inserts day separators, and shows an “Unread” divider based on a read timestamp.
+
+### Setup & run instructions
+------------------------
+
+1. Create the app (or open your existing React app)
+npx create-react-app chat-grouper
+cd chat-grouper
+
+2. Start the dev server
+
+npm start
+
+
+3. Open the app in your browser
+
+http://localhost:3000
+
+## Assumptions / Trade-offs
+
+- Messages may be **unsorted**; the component always sorts by `createdAt` (then `id` if tied).  
+- Consecutive messages by the **same author within 2 minutes** are grouped.  
+- **Day separators** are inserted on date changes.  
+- **Unread divider** appears once, before the first message after `readAt`.  
+- **Current user messages** are rendered differently (right-aligned).  
+- **Minimal styling**; focus is on logic correctness.  
+
+---
+
+## Edge Cases Covered
+
+- **Unsorted messages** : correctly sorted.  
+- **Same timestamp** : tie-breaker via `id`.  
+- **Day changes** : correct day separator and reset grouping.  
+- **Unread divider** : only appears once, correctly placed.  
+- **Author/group changes** : new bubble started.  
+- **Single message / empty array** : renders without errors.  
 
 
 
