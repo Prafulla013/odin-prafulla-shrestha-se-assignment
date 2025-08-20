@@ -1,1 +1,72 @@
 # odin-prafulla-shrestha-se-assignment
+
+#Backend
+
+# Token Bucket Rate Limiter Simulation
+
+This is a simple Python script to simulate a token bucket algorithm. It's a common way to handle rate limiting in APIs. The script takes a list of request timestamps and simulates whether each request would be allowed or denied.
+
+### What It Does
+
+The script calculates how many tokens are in the bucket at the time of each request, accounting for a refill rate between requests.
+
+- **Capacity:** The max number of tokens the bucket can hold.
+- **Refill Rate:** How many tokens are added per second.
+- **Requests:** A list of timestamps for each incoming request.
+
+The output shows you, for each request, if it was **allowed** and the number of **tokens remaining**.
+
+### How to Run
+
+1.  Clone this repository to your local machine.
+    git clone https://github.com/your-username/token-bucket-simulator.git
+2.  Navigate to the project directory.
+    cd odin-prafulla-shrestha-se-assignment/backend
+3.  Run the script using Python.
+    python Assignment.py
+4.  The script will prompt you to enter the capacity, refill rate, and a comma-separated list of request timestamps.
+
+### Example
+
+Here's a quick example of the kind of input and output you can expect:
+
+**Input:**
+- **Capacity:** 5
+- **Refill Rate:** 2
+- **Requests:** 0.0, 0.1, 0.2, 1.5, 1.6
+
+**Output:**
+The script will print a JSON output showing the status of each request.
+
+
+json
+[
+  {
+    "t": 0.0,
+    "allowed": true,
+    "tokens_after": 4.0
+  },
+  {
+    "t": 0.1,
+    "allowed": true,
+    "tokens_after": 3.2
+  },
+  {
+    "t": 0.2,
+    "allowed": true,
+    "tokens_after": 2.4
+  },
+  {
+    "t": 1.5,
+    "allowed": true,
+    "tokens_after": 4.0
+  },
+  {
+    "t": 1.6,
+    "allowed": true,
+    "tokens_after": 3.2
+  }
+]
+
+#Frontend
+
