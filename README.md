@@ -1,6 +1,6 @@
 # odin-prafulla-shrestha-se-assignment
 
-#Backend
+# Backend
 
 # Token Bucket Rate Limiter Simulation
 
@@ -25,6 +25,26 @@ The output shows you, for each request, if it was **allowed** and the number of 
 3.  Run the script using Python.
     python Assignment.py
 4.  The script will prompt you to enter the capacity, refill rate, and a comma-separated list of request timestamps.
+
+### Assumptions / Trade-offs
+
+- **Requests are given as timestamps in seconds** (floats or integers).
+- **Refill is linear over time**, not bursty.
+- **No concurrency**: requests are processed sequentially in the given order.
+- **Simulation only**: not integrated with a real API server.
+- **Tokens cannot exceed capacity**: extra refill tokens are discarded.
+
+---
+
+### Edge Cases Covered
+
+- **Capacity = 0** : No requests can ever be allowed. 
+- **Refill Rate = 0** : Bucket never refills, only initial capacity is used. 
+- **Multiple requests at the same timestamp** : Processed in sequence, tokens decrease accordingly. 
+- **Large time gaps between requests** : Bucket refills up to its maximum capacity.
+- **Excessive requests** : Once tokens are depleted, further requests are denied until refill occurs.
+
+
 
 ### Example
 
@@ -68,5 +88,7 @@ json
   }
 ]
 
-#Frontend
+# Frontend
+
+
 
